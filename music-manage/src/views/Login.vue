@@ -32,7 +32,9 @@ export default defineComponent({
     const ruleForm = reactive({
       username: "admin",
       password: "123",
+
     });
+
     const rules = reactive({
       username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
       password: [{ required: true, message: "请输入密码", trigger: "blur" }],

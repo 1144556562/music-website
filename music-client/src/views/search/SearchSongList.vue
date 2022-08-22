@@ -22,6 +22,7 @@ export default defineComponent({
     const searchWord = computed(() => store.getters.searchWord);
     watch(searchWord, (value) => {
       getSearchList(value);
+      // console.log(value);
     });
 
     async function getSearchList(value) {

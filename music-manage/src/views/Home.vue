@@ -17,6 +17,7 @@ import emitter from "@/utils/emitter";
 const collapse = ref(false);
 emitter.on("collapse", (msg) => {
   collapse.value = msg as boolean;
+  // console.log(1);
 });
 </script>
 

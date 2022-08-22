@@ -1,9 +1,12 @@
 <template>
   <div class="content">
-    <el-table highlight-current-row :data="dataList" @row-click="handleClick">
-      <el-table-column prop="songName" label="歌曲" />
-      <el-table-column prop="singerName" label="歌手" />
-      <el-table-column prop="introduction" label="专辑" />
+    <el-table highlight-current-row :data="dataList" @row-click="handleClick"   >
+      <el-table-column width="70" prop="id" label="id" sortable />
+      <el-table-column prop="songName" label="歌曲" sortable/>
+      <el-table-column prop="singerName" label="歌手" sortable/>
+      <el-table-column prop="introduction" label="专辑" sortable/>
+      <el-table-column prop="createTime"  label="上传时间" :formatter="dateFormat" sortable/>
+<!--      <el-table-column  prop="updateTime" label="updateTime" :formatter="dateFormat" sortable/>-->
       <el-table-column label="编辑" width="80" align="center">
         <template #default="scope">
           <el-dropdown>
@@ -35,8 +38,10 @@ import mixin from "@/mixins/mixin";
 import { MoreFilled, Delete, Download } from "@element-plus/icons-vue";
 import { HttpManager } from "@/api";
 import { Icon } from "@/enums";
+import { formatDate } from "@/utils/index";
 
 export default defineComponent({
+
   components: {
     MoreFilled,
   },
@@ -68,6 +73,8 @@ export default defineComponent({
         item["songName"] = getSongTitle(item.name);
         item["singerName"] = getSingerName(item.name);
         item["index"] = index;
+        // item["updateTime"] = formatDate(item.updateTime);
+        item["createTime"] = formatDate(item.createTime);
         list.push(item);
       });
       return list;
@@ -89,6 +96,7 @@ export default defineComponent({
       console.log("row", row);
     }
 
+
     const userId = computed(() => store.getters.userId);
 
     async function deleteCollection({ id }) {
@@ -103,6 +111,7 @@ export default defineComponent({
       if (result.data === false) proxy.$emit("changeData", result.data);
     }
 
+
     return {
       dataList,
       iconList,
@@ -116,7 +125,10 @@ export default defineComponent({
       downloadMusic,
       deleteCollection,
     };
+
   },
+
+
 });
 </script>
 

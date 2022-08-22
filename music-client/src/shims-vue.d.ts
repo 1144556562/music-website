@@ -20,4 +20,5 @@ interface ResponseBody {
   message: string;
   type: string;
   data?: any;
+  // a:aa;
 }

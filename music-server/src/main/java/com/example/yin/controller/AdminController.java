@@ -22,5 +22,6 @@ public class AdminController {
     @PostMapping("/admin/login/status")
     public R loginStatus(@RequestBody AdminRequest adminRequest, HttpSession session) {
         return adminService.verityPasswd(adminRequest, session);
+
     }
 }

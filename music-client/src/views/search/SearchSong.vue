@@ -39,6 +39,7 @@ export default defineComponent({
         });
       } else {
         currentSongList.value = result.data;
+        console.log(result.data);
       }
     }
 
@@ -48,6 +49,7 @@ export default defineComponent({
 
     return {
       currentSongList,
+
     };
   },
 });
